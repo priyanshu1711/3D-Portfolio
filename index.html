@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Priyanshu's 3D Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background: #111;
+      color: #fff;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+      background: #00000088;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .scene {
+      width: 100vw;
+      height: 100vh;
+      perspective: 1000px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      touch-action: none;
+    }
+
+    .cube {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+    }
+
+    .face {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      padding: 20px;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    .face h1 {
+      font-size: 24px;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .face.home {
+      transform: rotateY(0deg) translateZ(150px);
+      background-image: url('https://images.unsplash.com/photo-1508923567004-3a6b8004f3d3');
+    }
+
+    .face.about {
+      transform: rotateY(90deg) translateZ(150px);
+      background-image: url('https://images.unsplash.com/photo-1505692794403-55b2a1c0a0f1');
+    }
+
+    .face.resume {
+      transform: rotateY(180deg) translateZ(150px);
+      background-image: url('https://images.unsplash.com/photo-1549921296-3a6b94aa0eab');
+    }
+
+    .face.portfolio {
+      transform: rotateY(-90deg) translateZ(150px);
+      background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97');
+    }
+
+    .face.contact {
+      transform: rotateX(90deg) translateZ(150px);
+      background-image: url('https://images.unsplash.com/photo-1520975916090-3105956f2e3b');
+    }
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 3px solid #fff;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 24px;
+      transition: transform 0.2s;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+
+    .resume ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .resume ul li {
+      margin-bottom: 5px;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 10px;
+      margin: 5px 0;
+      width: 80%;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .contact button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background: #fff;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Theme</button>
+  <div class="scene" id="scene">
+    <div class="cube" id="cube">
+      <div class="face home">
+        <img src="profile.jpg" alt="Priyanshu Profile" class="profile-img" />
+        <h1>Hi, I'm Priyanshu</h1>
+        <div class="social-icons">
+          <a href="https://github.com/priyanshupal" target="_blank"><i class='bx bxl-github'></i></a>
+          <a href="#"><i class='bx bxl-linkedin'></i></a>
+          <a href="#"><i class='bx bxl-twitter'></i></a>
+        </div>
+      </div>
+
+      <div class="face about">
+        <h1>About Me</h1>
+        <p>I'm a final year AIML student passionate about AI, Web Development, and building cool tech like Siya – my virtual assistant. I love learning and creating.</p>
+      </div>
+
+      <div class="face resume resume">
+        <h1>Resume</h1>
+        <ul>
+          <li><strong>Skills:</strong> Python, Java, C, JavaScript</li>
+          <li><strong>Web:</strong> HTML, CSS, Node.js</li>
+          <li><strong>DB:</strong> MySQL</li>
+          <li><strong>Tools:</strong> Git, VSCode</li>
+          <li><strong>Projects:</strong> Jarves AI, Blockchain Security, Facial Recognition Attendance , Unified learning program</li>
+        </ul>
+      </div>
+
+      <div class="face portfolio">
+        <h1>Portfolio</h1>
+        <p>Categories:</p>
+        <ul>
+          <li>Web Development</li>
+          <li>SQL Projects</li>
+          <li>Java Programs</li>
+          <li>Photography</li>
+          <li>Video Editing</li>
+        </ul>
+      </div>
+
+      <div class="face contact contact">
+        <h1>Let's Work Together</h1>
+        <input type="text" placeholder="Full Name" /><br />
+        <input type="email" placeholder="Email" /><br />
+        <input type="text" placeholder="Phone Number" /><br />
+        <input type="text" placeholder="Subject" /><br />
+        <textarea placeholder="Message" rows="3"></textarea><br />
+        <button>Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    const cube = document.getElementById('cube');
+    const scene = document.getElementById('scene');
+    let isDragging = false;
+    let previousX = 0;
+    let previousY = 0;
+    let rotationX = -20;
+    let rotationY = 20;
+
+    const updateCubeRotation = () => {
+      cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+    };
+
+    scene.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      previousX = e.clientX;
+      previousY = e.clientY;
+    });
+
+    scene.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - previousX;
+      const deltaY = e.clientY - previousY;
+      rotationY += deltaX * 0.5;
+      rotationX -= deltaY * 0.5;
+      previousX = e.clientX;
+      previousY = e.clientY;
+      updateCubeRotation();
+    });
+
+    scene.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    scene.addEventListener('mouseleave', () => {
+      isDragging = false;
+    });
+
+    // Touch events for mobile
+    scene.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      previousX = e.touches[0].clientX;
+      previousY = e.touches[0].clientY;
+    });
+
+    scene.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.touches[0].clientX - previousX;
+      const deltaY = e.touches[0].clientY - previousY;
+      rotationY += deltaX * 0.5;
+      rotationX -= deltaY * 0.5;
+      previousX = e.touches[0].clientX;
+      previousY = e.touches[0].clientY;
+      updateCubeRotation();
+    });
+
+    scene.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+  </script>
+</body>
+</html>
